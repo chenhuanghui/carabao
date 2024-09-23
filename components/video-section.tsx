@@ -4,9 +4,9 @@ import { Button } from './ui/button';
 
 const VideoSection: React.FC = () => {
     return (
-        <section className="w-full h-full grid grid-cols-1 lg:grid-cols-2 bg-dark rounded-lg shadow-lg relative bg-gradient-to-r from-green-400 to-green-600 items-center p-8 gap-8">
-            <div className="flex flex-col items-center order-1 lg:order-2">
-                <video controls className="w-full rounded-lg shadow-lg">
+        <section className="w-full h-full grid grid-cols-1 bg-dark rounded-lg shadow-lg relative items-center p-8 gap-8">
+            <div className="flex flex-col items-center order-1">
+                <video controls className="w-full rounded-2xl shadow-lg">
                     <source src="https://hcm03.vstorage.vngcloud.vn/v1/AUTH_003ad868e39941579ae6ca95335a7486/reelflow/444956bf-c4d8-49f2-b370-d19b5f0d2bfe.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>                

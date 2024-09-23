@@ -32,7 +32,17 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} antialiased`}
 			>
+				<div className="pt-5" style={{ 
+					backgroundImage: "url('/game-background.jpg')" ,
+					backgroundRepeat: "no-repeat",
+					backgroundSize: "auto 100%",
+					backgroundPosition: "top",
+					objectFit: "cover",
+					minHeight: "100svh",
+					maxHeight: "100svh",
+				}}>
 				{children}
+				</div>
 			</body>
 		</html>
 	);
