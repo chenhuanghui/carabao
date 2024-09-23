@@ -4,12 +4,12 @@ import IntroduceSection from "@/components/introduce-section";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-dark">
+    <div className="grid grid-rows-[200px_1fr_20px] items-start justify-items-center min-h-screen pb-20 gap-16 font-[family-name:var(--font-geist-sans)] bg-dark w-full max-w-4xl mx-auto mt-5 border-[#BBF517] border-4 rounded-2xl shadow-lg overflow-hidden">
       
       {/* Header with Carabao Logo */}
-      <header className="w-full flex justify-center items-center py-4">
+      <header className="w-full flex justify-center items-start bg-gradient-to-b from-[#BBF517] via-[#BBF517] to-[transparent]">
         <Image
-          src="/path/to/carabao-logo.png" // Update this path to your Carabao logo image
+          src="/image.jpg" // Update this path to your Carabao logo image
           alt="Carabao Logo"
           width={150} // Adjust the width as needed
           height={50} // Adjust the height as needed
