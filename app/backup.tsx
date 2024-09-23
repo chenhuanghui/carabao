@@ -1,6 +1,6 @@
 import Image from "next/image";
-import VideoSection from "@/components/video-section";
-import IntroduceSection from "@/components/introduce-section";
+import VideoSection from "@/components/backup/video-section";
+import IntroduceSection from "@/components/backup/introduce-section";
 import Footer from '../components/footer';
 
 export default function Home() {
