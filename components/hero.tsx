@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react';
+import { Button } from './ui/button';
 
 const Hero: React.FC = () => {
     return (
@@ -12,7 +13,7 @@ const Hero: React.FC = () => {
                 <p className="text-lg mb-8 font-pathwayExtreme">
                     <span className="text-green-600">Chỉ cần sáng tạo nội dung cùng Carabao </span> bạn sẽ có cơ hội trúng 5 cặp vé du lịch Thái Lan 3 ngày 2 đêm miễn phí! Đừng bỏ lỡ dịp khám phá xứ chùa Vàng và trải nghiệm văn hóa Thái Lan độc đáo!
                 </p>
-                <button className="bg-pink-600 text-white px-4 py-2 rounded-full">Get started</button>
+                <Button className="bg-green-600 text-white px-4 py-2 rounded-full font-pathwayExtreme"> Tham gia ngay 🔥 </Button>
             </div>
             <div className="lg:w-1/2 flex flex-col lg:flex-row items-center lg:items-start space-y-4 lg:space-y-0 lg:space-x-4 justify-self-center">
                 {/* <Image src="/image1.jpg" alt="Image 1" width={300} height={200} className="rounded-lg" />
