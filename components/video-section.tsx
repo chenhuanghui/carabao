@@ -15,7 +15,7 @@ const VideoSection: React.FC = () => {
             <div className="flex flex-col justify-center items-center order-2">
                 <div className=" flex flex-row text-start p-3 gap-2 rounded-xl justify-center align-middle drop-shadow-2xl border-2 border-[#2f843a] uppercase bg-white text-neutarl-700 transition hover:-translate-y-1 duration-200 text-sm shadow-[1px_1px_rgba(54,132,47),2px_2px_rgba(54,132,47),3px_3px_rgba(54,132,47),4px_4px_rgba(54,132,47),5px_5px_0px_0px_rgba(54,132,47)] text-[#36842F] hover:cursor-pointer">
                     <p className="text-xl font-phudu ">
-                        Hãy sáng tạo <br /> nội dung
+                        5 cặp vé đi Thái Lan <br /> 3 ngày 2 đêm đang chờ bạn
                     </p>
                     <div className="w-1 h-auto border border-y-0 border-l-0 border-dashed border-[#36842F]"></div>
                     <p className="uppercase text-xl font-phudu font-bold">

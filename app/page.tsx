@@ -1,80 +1,48 @@
-import Image from "next/image";
-import VideoSection from "@/components/video-section";
-import IntroduceSection from "@/components/introduce-section";
-import Footer from '../components/footer';
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Home() {
+const NewLandingPage: React.FC = () => {
 	return (
-		<div className="grid grid-rows-[200px_1fr_auto] items-start justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] bg-dark w-full max-w-4xl mx-auto border-[#BBF517] border-4 rounded-2xl shadow-lg overflow-hidden">
-
-			{/* Header with Carabao Logo */}
-			<header className="w-full flex justify-center items-start bg-gradient-to-b from-[#BBF517] via-[#BBF517] to-[transparent]">
-				<Image
-					src="/logo.png" // Update this path to your Carabao logo image
-					alt="Carabao Logo"
-					width={250} // Adjust the width as needed
-					height={250} // Adjust the height as needed
-				/>
+		<div className="min-h-screen bg-black text-white flex flex-col items-center">
+			{/* Header */}
+			<header className="w-full flex justify-between items-center p-4 bg-black">
+				<div className="flex items-center space-x-2">
+					{/* <Image src="/tiktok-logo.png" alt="TikTok Logo" width={32} height={32} /> */}
+					<span className="text-xl font-bold">Carabao</span>
+				</div>
+				<div className="flex items-center space-x-4">
+					<span>English</span>
+					<span>U</span>
+					<button className="bg-pink-600 text-white px-4 py-2 rounded-full">Go to Business Center</button>
+				</div>
 			</header>
 
-			<main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-
-				{/* Video Section */}
-				<VideoSection />
-
-				{/* Introduce Section */}
-				<IntroduceSection />
-
-				{/* Social Post Link Submission */}
-				<section className="w-full">
-					<h2 className="text-xl font-bold text-white">Join the Campaign</h2>
-					<form className="flex flex-col gap-4">
-						<input
-							type="url"
-							placeholder="Enter your social post link"
-							className="border p-2 rounded"
-							required
-						/>
-						<button type="submit" className="bg-blue-500 text-white p-2 rounded">
-							Submit
-						</button>
-					</form>
-				</section>
-
-				{/* Quantity of Attendees and Social Post Links */}
-				<section className="w-full">
-					<h2 className="text-xl font-bold text-white">Campaign Stats</h2>
-					<p className="text-white">Number of Attendees: <span id="attendee-count">0</span></p>
-					<p className="text-white">Social Post Links Submitted: <span id="post-count">0</span></p>
-				</section>
-
-				{/* Campaign Introduction and Steps */}
-				<section className="w-full">
-					<h2 className="text-xl font-bold text-white">About the Campaign</h2>
-					<p className="text-white">Introduce the campaign here...</p>
-					<h3 className="text-lg font-semibold text-white">How to Join</h3>
-					<ol className="list-decimal list-inside text-white">
-						<li>Step 1: Description of step 1...</li>
-						<li>Step 2: Description of step 2...</li>
-						<li>Step 3: Description of step 3...</li>
-					</ol>
-				</section>
-
-				{/* FAQ Section */}
-				<section className="w-full">
-					<h2 className="text-xl font-bold text-white">FAQ</h2>
-					<details className="text-white">
-						<summary>Question 1?</summary>
-						<p>Answer to question 1...</p>
-					</details>
-					<details className="text-white">
-						<summary>Question 2?</summary>
-						<p>Answer to question 2...</p>
-					</details>
-				</section>
+			{/* Main Content */}
+			<main className="w-full max-w-4xl mx-auto mt-10 lg:space-x-8 p-8 md:p-0">
+				<div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 justify-center">
+					<div className="lg:w-1/2 mb-8 lg:mb-0 text-left">
+						<h1 className="text-5xl font-bold mb-4 font-phudu">
+							Cơ hội nhận ngay 5 cặp vé du lịch thái lan <span className="text-green-600"> 3 ngày 2 đêm</span> hoàn toàn miễn phí
+						</h1>
+						<p className="text-lg mb-8 font-pathwayExtreme">
+							<span className="text-green-600">Chỉ cần sáng tạo nội dung cùng Carabao </span> bạn sẽ có cơ hội trúng 5 cặp vé du lịch Thái Lan 3 ngày 2 đêm miễn phí! Đừng bỏ lỡ dịp khám phá xứ chùa Vàng và trải nghiệm văn hóa Thái Lan độc đáo!
+						</p>
+						<button className="bg-pink-600 text-white px-4 py-2 rounded-full">Get started</button>
+					</div>
+					<div className="lg:w-1/2 flex flex-col lg:flex-row items-center lg:items-start space-y-4 lg:space-y-0 lg:space-x-4 justify-self-center">
+						{/* <Image src="/image1.jpg" alt="Image 1" width={300} height={200} className="rounded-lg" />
+          <Image src="/image2.jpg" alt="Image 2" width={300} height={200} className="rounded-lg" />
+          <Image src="/image3.jpg" alt="Image 3" width={300} height={200} className="rounded-lg" /> */}
+						<video controls className="w-full rounded-2xl shadow-lg">
+							<source src="https://hcm03.vstorage.vngcloud.vn/v1/AUTH_003ad868e39941579ae6ca95335a7486/reelflow/444956bf-c4d8-49f2-b370-d19b5f0d2bfe.mp4" type="video/mp4" />
+							Your browser does not support the video tag.
+						</video>
+					</div>
+				</div>
 			</main>
-			<Footer />
 		</div>
-
 	);
-}
+};
+
+export default NewLandingPage;
