@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Hero from '@/components/hero';
 import Header from '@/components/header';
+import Introduce from '@/components/introduce';
 
 const NewLandingPage: React.FC = () => {
   return (
@@ -10,8 +11,10 @@ const NewLandingPage: React.FC = () => {
       <Header />
 
       {/* Main Content */}
-      <main className="w-full max-w-4xl mx-auto mt-20 lg:space-x-8 p-8 md:p-0">
+      <main className="mt-20 lg:space-x-8 flex flex-col space-y-8">
         <Hero />
+        {/* Section 2: Opportunities */}
+		<Introduce />
       </main>
     </div>
   );
