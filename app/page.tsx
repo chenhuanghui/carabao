@@ -5,7 +5,7 @@ import Header from '@/components/header';
 import Introduce from '@/components/introduce';
 import HowToJoin from '@/components/how-to-join';
 import FAQ from '@/components/faq';
-
+import Footer from '@/components/footer';
 const NewLandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center">
@@ -19,6 +19,7 @@ const NewLandingPage: React.FC = () => {
 		<HowToJoin />
 		<Introduce />
 		<FAQ />
+		<Footer />
       </main>
     </div>
   );
