@@ -12,22 +12,26 @@ const FAQ: React.FC = () => {
 
     const faqs = [
         {
-            question: "Should I use TikTok Business Center if I have an ad account on TikTok?",
-            answer: "Yes, here are some unique functionalities of the TikTok Business Center:\n\n- Invite multiple people to collaborate on campaigns and work together efficiently.\n- Stay ahead of the curve. Be the first to know about TikTok's latest and greatest solutions - brand building, performance marketing, e-commerce, creator, you name it.\n- Centralize all your business needs in one place.\n- Safeguard data and assets by managing access to your account."
+            question: "Làm sao để tham gia trò chơi trúng thưởng của Carabao?",
+            answer: "Rất đơn giản! Chỉ cần bạn sáng tạo nội dung vui nhộn, thú vị với nước tăng lực Carabao (hình ảnh hoặc video), đăng lên TikTok hay Facebook kèm hashtag #CarabaoVietNam và #DiThaiLanKhongKho. Sau đó, vào trang web carabao.vn, nhập đường link bài đăng của bạn. Vậy là xong!"
         },
         {
-            question: "What do I need to register for TikTok Business Center?",
-            answer: "To register for TikTok Business Center, you need to provide your business details and follow the registration process on the Business Center website."
+            question: "Mình có thể tăng cơ hội trúng giải không?",
+            answer: "Chắc chắn rồi! Mỗi bài đăng hợp lệ, cơ hội trúng vé đi Thái Lan của bạn sẽ cao hơn. Tham gia càng nhiều, nội dung càng sáng tạo, xác suất trúng giải càng lớn!"
         },
         {
-            question: "I am working with marketing agencies for my TikTok campaigns. How do I grant them access?",
-            answer: "You can grant access to marketing agencies by inviting them to your TikTok Business Center and assigning them the appropriate roles and permissions."
+            question: "Carabao chọn người trúng giải như thế nào?",
+            answer: "Tụi mình sẽ quay số may mắn từ tất cả các bài đăng hợp lệ. Mỗi bài đăng hợp lệ là một cơ hội vào vòng quay, vậy nên cứ đăng nhiều lên nhé!"
         },
         {
-            question: "How should I organize my Business Center to collaborate with my team?",
-            answer: "Organize your Business Center by setting up different teams and assigning roles to team members based on their responsibilities. This will help streamline collaboration and ensure efficient management of your campaigns."
+            question: "Thế nào là bài đăng hợp lệ?",
+            answer: "Bài đăng hợp lệ là bài có sử dụng bất kỳ yếu tố hình ảnh hoặc sản phẩm của Carabao. Chỉ cần bạn chia sẻ niềm yêu thích với Carabao, đăng kèm hashtag #CarabaoVietNam và #DiThaiLanKhongKho, rồi nhập đường link bài đăng vào website carabao.vn là hợp lệ rồi!"
+        },
+        {
+            question: "Mình có thể tham gia với nhiều bài đăng không?",
+            answer: "Càng nhiều bài càng vui! Bạn có thể tham gia nhiều lần. Mỗi bài hợp lệ đều giúp tăng cơ hội trúng giải. Tham gia thật nhiều, cơ hội đi Thái Lan là của bạn!"
         }
-    ]
+    ];
 
     const toggleFAQ = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index)
@@ -38,8 +42,10 @@ const FAQ: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 justify-center">
                 <div className="mb-8 lg:col-span-1">
                     <h2 className="text-3xl md:text-5xl font-bold">FAQs</h2>
-                    <p className="text-sm text-gray-600">Here are the most commonly asked questions about TikTok Business Center.</p>
-                    <Button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-5">Visit Help Center</Button>
+                    <p className="text-sm text-gray-600">Dưới đây là những câu hỏi thường gặp về cách tham gia và cơ hội trúng thưởng trong chương trình 
+                        <span className='text-green-500 font-semibold'> "Sáng tạo cùng Carabao Trúng Vé Đi Thái” </span> 
+                    của chúng tôi.</p>
+                    <Button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-5"> Tham Gia Ngay</Button>
                 </div>
                 <div className="space-y-4 lg:col-span-2">
                     {faqs.map((faq, index) => (
