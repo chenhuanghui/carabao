@@ -19,8 +19,8 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-4">
                 {/* <span>English</span>
                 <span>U</span> */}
-                <Button className="font-pathwayExtreme rounded-full bg-green-700">
-                    Truy cập tài khoản
+                <Button className="font-phudu rounded-full bg-green-700 text-xs font-light">
+                    Truy cập Tài Khoản
                     <Image
                         src="/assets/icons/carabao-logo.svg"
                         alt="Carabao Logo"
