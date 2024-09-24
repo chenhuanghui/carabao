@@ -70,16 +70,18 @@ export default function UserNav() {
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent className="w-56 hover:cursor-pointer" align="end" forceMount>
-					<DropdownMenuLabel className="font-normal hover:cursor-pointer">
-						<div className="flex flex-col space-y-1">
-							<p className="text-sm font-medium leading-none">
-								{user?.firstName + ' ' + user.lastName ?? ''}
-							</p>
-							<p className="text-xs leading-none text-muted-foreground">
-								{user?.email}
-							</p>
-						</div>
-					</DropdownMenuLabel>
+					{user && (
+						<DropdownMenuLabel className="font-normal hover:cursor-pointer">
+							<div className="flex flex-col space-y-1">
+								<p className="text-sm font-medium leading-none">
+									{user.firstName + ' ' + user.lastName}
+								</p>
+								<p className="text-xs leading-none text-muted-foreground">
+									{user?.email}
+								</p>
+							</div>
+						</DropdownMenuLabel>
+					)}
 					<DropdownMenuSeparator />
 
 					<DropdownMenuGroup>
