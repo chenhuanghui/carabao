@@ -15,14 +15,20 @@ const Hero: React.FC = () => {
                     <p className="text-lg mb-8 font-pathwayExtreme">
                         <span className="text-green-600">Chỉ cần sáng tạo nội dung cùng Carabao </span> bạn sẽ có cơ hội trúng 5 cặp vé du lịch Thái Lan 3 ngày 2 đêm miễn phí! Đừng bỏ lỡ dịp khám phá xứ chùa Vàng và trải nghiệm văn hóa Thái Lan độc đáo!
                     </p>
-                    <Button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-phudu"> Tham gia ngay 🔥 </Button>
+                    <Button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-phudu"> 
+                        Tham gia ngay 
+                        <span className=" animate-bounce ml-1"> 🔥 </span>
+                    </Button>
                 </div>
                 <div className="lg:w-1/2 flex flex-col lg:flex-row items-center lg:items-start space-y-4 lg:space-y-0 lg:space-x-4 justify-self-center">
                     {/* <Image src="/image1.jpg" alt="Image 1" width={300} height={200} className="rounded-lg" />
           <Image src="/image2.jpg" alt="Image 2" width={300} height={200} className="rounded-lg" />
           <Image src="/image3.jpg" alt="Image 3" width={300} height={200} className="rounded-lg" /> */}
-                    <video controls className="w-full rounded-2xl shadow-lg">
-                        <source src="https://hcm03.vstorage.vngcloud.vn/v1/AUTH_003ad868e39941579ae6ca95335a7486/reelflow/444956bf-c4d8-49f2-b370-d19b5f0d2bfe.mp4" type="video/mp4" />
+                    <video controls className="w-full rounded-2xl shadow-lg border-2 border-green-500">
+                        <source 
+                            src="https://hcm03.vstorage.vngcloud.vn/v1/AUTH_003ad868e39941579ae6ca95335a7486/reelflow/444956bf-c4d8-49f2-b370-d19b5f0d2bfe.mp4" 
+                            type="video/mp4" 
+                        />
                         Your browser does not support the video tag.
                     </video>
                 </div>

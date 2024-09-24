@@ -1,37 +1,45 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import Section from "./section"
 
-export default function HowToJoin() {
-    const [hoveredItem, setHoveredItem] = useState<number | null>(0)
+const steps = [
+    {
+        title: "Bước 1. Bùng nổ sáng tạo cùng Carabao",
+        description: "Tạo ngay một video hoặc hình ảnh độc đáo cùng Carabao để thể hiện cá tính của bạn!",
+        image: "/assets/steps/1.svg"
+    },
+    {
+        title: "Bước 2. Chia sẻ để lan tỏa niềm vui",
+        description: "Đăng tải lên TikTok hoặc Facebook cá nhân và đừng quên thêm hashtag #CarabaoVietNam #DiThaiLanKhongKho để có cơ hội trúng thưởng.",
+        image: "/assets/steps/2.svg"
+    },
+    {
+        title: "Bước 3. Đăng ký để không bỏ lỡ cơ hội",
+        description: "Nhanh tay tạo tài khoản trên carabao.vn để bước gần hơn đến giải thưởng cực chất!",
+        image: "/assets/steps/3.svg"
+    },
+    {
+        title: "Bước 4. Gửi bài dự thi và chờ đợi may mắn",
+        description: "Dán link bài đăng của bạn vào bộ sưu tập trên carabao.vn và chờ đón tin vui! Tham gia càng nhiều, nội dung càng chất, thì xác suất trúng thưởng của bạn sẽ càng cao!",
+        image: "/assets/steps/4.svg"
+    }
+]
 
-    const steps = [
-        {
-            title: "Bước 1. Bùng nổ sáng tạo cùng Carabao",
-            description: "Tạo ngay một video hoặc hình ảnh độc đáo cùng Carabao để thể hiện cá tính của bạn!",
-            image: "/assets/steps/1.svg"
-        },
-        {
-            title: "Bước 2. Chia sẻ để lan tỏa niềm vui",
-            description: "Đăng tải lên TikTok hoặc Facebook cá nhân và đừng quên thêm hashtag #CarabaoVietNam #DiThaiLanKhongKho để có cơ hội trúng thưởng.",
-            image: "/assets/steps/2.svg"
-        },
-        {
-            title: "Bước 3. Đăng ký để không bỏ lỡ cơ hội",
-            description: "Nhanh tay tạo tài khoản trên carabao.vn để bước gần hơn đến giải thưởng cực chất!",
-            image: "/assets/steps/3.svg"
-        },
-        {
-            title: "Bước 4. Gửi bài dự thi và chờ đợi may mắn",
-            description: "Dán link bài đăng của bạn vào bộ sưu tập trên carabao.vn và chờ đón tin vui! Tham gia càng nhiều, nội dung càng chất, thì xác suất trúng thưởng của bạn sẽ càng cao!",
-            image: "/assets/steps/4.svg"
-        }
-    ]
+export default function HowToJoin() {
+    const [hoveredItem, setHoveredItem] = useState<number | null>(0)    
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setHoveredItem(prev => (prev === null || prev >= steps.length - 1 ? 0 : prev + 1))
+        }, 3000)
+
+        return () => clearInterval(interval)
+    }, [])
 
     return (
         <Section className="bg-green-100 text-black md:py-20">
