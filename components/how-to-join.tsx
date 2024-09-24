@@ -78,9 +78,8 @@ export default function HowToJoin({ onOpenSocialPostModal, className }: HowToJoi
                 <div className="flex flex-col items-center justify-center bg-[#e0f290] p-6 rounded-lg">
                     <div className="relative h-[300px] w-full flex justify-center">
                         {steps.map((step, index) => (
-                            <div className="absolute top-0 left-0 w-11/12 rounded-xl flex justify-center">
+                            <div className="absolute top-0 left-0 w-11/12 rounded-xl flex justify-center" key={index}>
                                 <Image
-                                    key={index}
                                     src={step.image}
                                     alt="Business opportunity"
                                     width={600}

@@ -2,10 +2,15 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { auth, useUser } from '@cabin-id/nextjs';
+
+import UserNav from '@/components/user-nav';
 import AccessButton from '@/components/ui/access-button';
+
 const Header: React.FC = () => {
-    return (
+    const { user, isSignedIn, signOut } = useUser();
+
+    return (    
         <header className="w-full flex justify-between items-center p-4 bg-black">
             <div className="flex items-center space-x-2 justify-center">
                 <Image
@@ -34,7 +39,13 @@ const Header: React.FC = () => {
                         className='ml-2'
                     />
                 </Button> */}
-                <AccessButton/>
+                {user && isSignedIn 
+                ? (
+                    <UserNav />
+                )
+                : (
+                    <AccessButton />
+                )}
             </div>
         </header>
     );
