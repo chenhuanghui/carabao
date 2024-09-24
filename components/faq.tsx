@@ -50,7 +50,7 @@ const FAQ: React.FC<FAQProps> = ({ onOpenSocialPostModal }: FAQProps) => {
                         <span className='text-green-500 font-semibold'> "Sáng tạo cùng Carabao Trúng Vé Đi Thái” </span>
                         của chúng tôi.</p>
                     <Button
-                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-5"
+                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full mt-5"
                         onClick={onOpenSocialPostModal}
                     >
                         Tham Gia Ngay
