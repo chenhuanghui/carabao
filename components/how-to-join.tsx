@@ -30,7 +30,12 @@ const steps = [
     }
 ]
 
-export default function HowToJoin() {
+interface HowToJoinProps {
+    onOpenSocialPostModal: () => void;
+    className?: string
+}
+
+export default function HowToJoin({ onOpenSocialPostModal, className }: HowToJoinProps) {
     const [hoveredItem, setHoveredItem] = useState<number | null>(0)    
 
     useEffect(() => {
@@ -61,7 +66,12 @@ export default function HowToJoin() {
                                     </li>
                                 ))}
                             </ol>
-                            <Button className="mt-5 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Get started</Button>
+                            <Button 
+                                className="mt-5 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded animate-bounce"
+                                onClick={onOpenSocialPostModal}
+                            >
+                                Tham Gia Ngay
+                            </Button>
                         </div>
                     </div>
                 </div>

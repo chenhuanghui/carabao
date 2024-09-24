@@ -14,9 +14,9 @@ export const HomeClient = () => {
     return (
         <div className="home-client-wrapper">
             <Hero onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
-            <HowToJoin />
-            <Introduce />
-            <FAQ />
+            <HowToJoin onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
+            <Introduce/>
+            <FAQ onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
             <Footer />
             <SocialPostModal 
                 isOpen={isOpenSocialPostModal} 

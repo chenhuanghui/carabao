@@ -7,7 +7,11 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { Button } from "@/components/ui/button"
 import Section from './section';
 
-const FAQ: React.FC = () => {
+interface FAQProps {
+    onOpenSocialPostModal: () => void;
+}
+
+const FAQ: React.FC<FAQProps> = ({ onOpenSocialPostModal }: FAQProps) => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
     const faqs = [
@@ -42,10 +46,15 @@ const FAQ: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 justify-center">
                 <div className="mb-8 lg:col-span-1">
                     <h2 className="text-3xl md:text-5xl font-bold">FAQs</h2>
-                    <p className="text-sm text-gray-600">Dưới đây là những câu hỏi thường gặp về cách tham gia và cơ hội trúng thưởng trong chương trình 
-                        <span className='text-green-500 font-semibold'> "Sáng tạo cùng Carabao Trúng Vé Đi Thái” </span> 
-                    của chúng tôi.</p>
-                    <Button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-5"> Tham Gia Ngay</Button>
+                    <p className="text-sm text-gray-600">Dưới đây là những câu hỏi thường gặp về cách tham gia và cơ hội trúng thưởng trong chương trình
+                        <span className='text-green-500 font-semibold'> "Sáng tạo cùng Carabao Trúng Vé Đi Thái” </span>
+                        của chúng tôi.</p>
+                    <Button
+                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-5"
+                        onClick={onOpenSocialPostModal}
+                    >
+                        Tham Gia Ngay
+                    </Button>
                 </div>
                 <div className="space-y-4 lg:col-span-2">
                     {faqs.map((faq, index) => (
