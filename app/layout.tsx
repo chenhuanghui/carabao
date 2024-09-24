@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import LocalFont from "next/font/local";
+import { CabinIDProvider } from '@cabin-id/nextjs';
+
 import "./globals.css";
 
 import {
@@ -10,7 +12,8 @@ import {
 	Bungee_Shade,
 	Phudu,
 	League_Gothic,
-	Faster_One
+	Faster_One,
+	Cabin
 } from "next/font/google";
 
 const pathwayExtreme = Pathway_Extreme({
@@ -83,10 +86,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`${pathwayExtreme.variable} ${bungee.variable} ${bungeeShade.variable} ${interFont.variable} ${bungeeInline.variable} ${phudu.variable} ${leagueGothic.variable} ${calSans.variable} ${fasterOne.variable}`}
-			>
-				{/* <div
+			<CabinIDProvider>
+				<body
+					className={`${pathwayExtreme.variable} ${bungee.variable} ${bungeeShade.variable} ${interFont.variable} ${bungeeInline.variable} ${phudu.variable} ${leagueGothic.variable} ${calSans.variable} ${fasterOne.variable}`}
+				>
+					{/* <div
 					className="pt-10 p-5 md:p-0 md:pt-5 "
 					style={{
 						backgroundImage: "url('/game-background.jpg')",
@@ -98,8 +102,10 @@ export default function RootLayout({
 						maxHeight: "100svh",
 					}}>
 				</div> */}
+
 					{children}
-			</body>
+				</body>
+			</CabinIDProvider>
 		</html>
 	);
 }
