@@ -32,7 +32,7 @@ export default function HowToJoin() {
     ]
 
     return (
-        <section className="bg-black md:w-svw md:py-20 py-10 ">
+        <section className="bg-green-100 text-black md:w-svw md:py-20 py-10 ">
             <div className='w-full md:max-w-4xl mx-auto p-8 md:p-0'>
                 <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-4 justify-center">
                     <div className="font-phudu">
@@ -43,12 +43,12 @@ export default function HowToJoin() {
                                     {steps.map((step, index) => (
                                         <li
                                             key={index}
-                                            className={cn("p-3 rounded-lg hover:cursor-pointer border-t-2 border-t-green-500", hoveredItem === index ? "opacity-100" : " opacity-96")}
+                                            className={cn("p-3 rounded-lg hover:cursor-pointer border-t-2 border-t-green-500", hoveredItem === index ? "opacity-100" : " opacity-50")}
                                             onMouseEnter={() => setHoveredItem(index)}
                                             onMouseLeave={() => setHoveredItem(index)}
                                         >
-                                            <h3 className={cn("text-xl text-green-500 font-semibold", hoveredItem === index ? " opacity-100" : " opacity-96")}>{step.title}</h3>
-                                            <p className={cn(" text-foreground", hoveredItem === index ? " opacity-100" : " opacity-96")}>{step.description}</p>
+                                            <h3 className={cn("text-xl text-green-500 font-semibold", hoveredItem === index ? " opacity-100" : " opacity-50")}>{step.title}</h3>
+                                            <p className={cn(" text-foreground", hoveredItem === index ? " opacity-100" : " opacity-50")}>{step.description}</p>
                                         </li>
                                     ))}
                                 </ol>
@@ -56,7 +56,7 @@ export default function HowToJoin() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center justify-center bg-yellow-100 p-6 rounded-lg">
+                    <div className="flex flex-col items-center justify-center bg-[#e0f290] p-6 rounded-lg">
                         <div className="relative h-[300px] w-full flex justify-center">
                             {steps.map((step, index) => (
                                 <div className="absolute top-0 left-0 w-11/12 rounded-xl flex justify-center">

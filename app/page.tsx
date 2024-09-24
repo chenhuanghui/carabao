@@ -4,6 +4,8 @@ import Hero from '@/components/hero';
 import Header from '@/components/header';
 import Introduce from '@/components/introduce';
 import HowToJoin from '@/components/how-to-join';
+import FAQ from '@/components/faq';
+
 const NewLandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center">
@@ -16,6 +18,7 @@ const NewLandingPage: React.FC = () => {
         {/* Section 2: Opportunities */}
 		<HowToJoin />
 		<Introduce />
+		<FAQ />
       </main>
     </div>
   );

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const Introduce: React.FC = () => {
   return (
-    <section className="bg-green-100 text-black md:w-svw md:py-20 py-10 ">
+    <section className="bg-black text-white md:w-svw md:py-20 py-10 ">
       <div className='w-full md:max-w-4xl mx-auto p-8 md:p-0'>
         <div className='flex flex-col lg:flex-row items-center justify-between gap-4'>
           <div className="lg:w-1/2 mb-8 lg:mb-0">
