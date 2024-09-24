@@ -43,12 +43,12 @@ export default function HowToJoin() {
                                     {steps.map((step, index) => (
                                         <li
                                             key={index}
-                                            className={cn("p-3 rounded-lg hover:cursor-pointer", hoveredItem === index ? "bg-slate-300" : "bg-transparent")}
+                                            className={cn("p-3 rounded-lg hover:cursor-pointer border-t-2 border-t-green-500", hoveredItem === index ? "opacity-100" : " opacity-96")}
                                             onMouseEnter={() => setHoveredItem(index)}
                                             onMouseLeave={() => setHoveredItem(index)}
                                         >
-                                            <h3 className="text-xl text-green-500 font-semibold">{step.title}</h3>
-                                            <p className="text-gray-400">{step.description}</p>
+                                            <h3 className={cn("text-xl text-green-500 font-semibold", hoveredItem === index ? " opacity-100" : " opacity-96")}>{step.title}</h3>
+                                            <p className={cn(" text-foreground", hoveredItem === index ? " opacity-100" : " opacity-96")}>{step.description}</p>
                                         </li>
                                     ))}
                                 </ol>
