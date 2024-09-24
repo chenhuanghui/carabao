@@ -52,8 +52,8 @@ export const SocialPostModal = ({
     return (
         <Modal
             isOpen={isOpen}
-            title="Chia sẻ ngay liên kết bài đăng của bạn!"
-            description="Dán link bài đăng lên mạng xã hội của bạn để tham gia cuộc thi và tăng cơ hội trúng vé đi Thái Lan miễn phí!"
+            title="Thêm vào bộ sưu tập sáng tạo của bạn!"
+            description="Dán link bài đăng mạng xã hội vào đây để tham gia ngay cùng Carabao và tăng cơ hội nhận vé du lịch Thái Lan miễn phí. Đừng bỏ lỡ!"
             onClose={onClose}
         >
             <Form {...form}>
@@ -65,10 +65,10 @@ export const SocialPostModal = ({
                             <FormItem>
                                 <FormLabel className="text-lg font-pathwayExtreme">TikTok URL / Facebook URL</FormLabel>
                                 <FormControl>
-                                    <Input 
+                                    <Input
                                         className=""
-                                        placeholder="Nhập link của bạn ở đây" 
-                                        {...field} 
+                                        placeholder="Nhập link của bạn ở đây"
+                                        {...field}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -78,6 +78,6 @@ export const SocialPostModal = ({
                     <Button type="submit" className="font-phudu bg-green-500 hover:bg-green-600">Submit</Button>
                 </form>
             </Form>
-        </Modal>
+        </Modal >
     )
 }

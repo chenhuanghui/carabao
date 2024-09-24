@@ -33,7 +33,7 @@ export const Modal = ({
     return (
         // <div className='w-full md:max-w-4xl mx-auto p-8 md:p-0'>
             <Dialog open={isOpen} onOpenChange={onChange}>
-                <DialogContent className={`w-[90vw] mx-auto md:h-auto ${className} pb-6 pt-0 p-0 bg-white`}>
+                <DialogContent className={`w-[95vw] mx-auto md:h-auto ${className} pb-6 pt-0 p-0 bg-white`}>
                     <DialogHeader className="px-5 pt-5 pb-2">
                         <DialogTitle>{title}</DialogTitle>
                         <DialogDescription>
