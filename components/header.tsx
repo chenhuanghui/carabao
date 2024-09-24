@@ -14,7 +14,7 @@ const Header: React.FC = () => {
                     width={50}
                     height={50}
                 />
-                <span className="text-xl font-bold font-phudu">Carabao Việt Nam</span>
+                <span className="text-xl font-bold font-phudu hidden md:block">Carabao Việt Nam</span>
             </div>
             <div className="flex items-center space-x-4">
                 {/* <span>English</span>
