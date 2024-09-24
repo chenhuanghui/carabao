@@ -5,6 +5,7 @@ import { useState } from "react"
 
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import Section from './section';
 
 const FAQ: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null)
@@ -33,35 +34,33 @@ const FAQ: React.FC = () => {
     }
 
     return (
-        <section className="bg-[#cee6e5] text-black md:w-svw md:py-20 py-10 font-pathwayExtreme">
-            <div className='w-full md:max-w-4xl mx-auto p-8 md:p-0'>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 justify-center">
-                    <div className="mb-8 lg:col-span-1">
-                        <h2 className="text-3xl md:text-5xl font-bold">FAQs</h2>
-                        <p className="text-sm text-gray-600">Here are the most commonly asked questions about TikTok Business Center.</p>
-                        <Button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-5">Visit Help Center</Button>
-                    </div>
-                    <div className="space-y-4 lg:col-span-2">
-                        {faqs.map((faq, index) => (
-                            <div key={index} className="border-b border-gray-300 pb-4">
-                                <div
-                                    className="flex justify-between items-center cursor-pointer"
-                                    onClick={() => toggleFAQ(index)}
-                                >
-                                    <h3 className="text-xl font-semibold">{faq.question}</h3>
-                                    <span className="text-2xl font-bold">
-                                        {activeIndex === index ? '-' : '+'}
-                                    </span>
-                                </div>
-                                {activeIndex === index && (
-                                    <p className="text-gray-600 mt-4 whitespace-pre-line">{faq.answer}</p>
-                                )}
+        <Section className="bg-[#cee6e5] text-black md:w-svw md:py-20 py-10 font-pathwayExtreme">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 justify-center">
+                <div className="mb-8 lg:col-span-1">
+                    <h2 className="text-3xl md:text-5xl font-bold">FAQs</h2>
+                    <p className="text-sm text-gray-600">Here are the most commonly asked questions about TikTok Business Center.</p>
+                    <Button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-5">Visit Help Center</Button>
+                </div>
+                <div className="space-y-4 lg:col-span-2">
+                    {faqs.map((faq, index) => (
+                        <div key={index} className="border-b border-gray-300 pb-4">
+                            <div
+                                className="flex justify-between items-center cursor-pointer"
+                                onClick={() => toggleFAQ(index)}
+                            >
+                                <h3 className="text-xl font-semibold">{faq.question}</h3>
+                                <span className="text-2xl font-bold">
+                                    {activeIndex === index ? '-' : '+'}
+                                </span>
                             </div>
-                        ))}
-                    </div>
+                            {activeIndex === index && (
+                                <p className="text-gray-600 mt-4 whitespace-pre-line">{faq.answer}</p>
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
-        </section>
+        </Section>
 
     )
 }

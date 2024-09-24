@@ -86,8 +86,8 @@ export default function RootLayout({
 			<body
 				className={`${pathwayExtreme.variable} ${bungee.variable} ${bungeeShade.variable} ${interFont.variable} ${bungeeInline.variable} ${phudu.variable} ${leagueGothic.variable} ${calSans.variable} ${fasterOne.variable}`}
 			>
-				<div
-					// className="pt-10 p-5 md:p-0 md:pt-5 "
+				{/* <div
+					className="pt-10 p-5 md:p-0 md:pt-5 "
 					style={{
 						backgroundImage: "url('/game-background.jpg')",
 						backgroundRepeat: "no-repeat",
@@ -97,8 +97,8 @@ export default function RootLayout({
 						minHeight: "100svh",
 						maxHeight: "100svh",
 					}}>
+				</div> */}
 					{children}
-				</div>
 			</body>
 		</html>
 	);
