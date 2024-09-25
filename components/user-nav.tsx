@@ -110,7 +110,10 @@ export default function UserNav() {
 
 					<DropdownMenuItem
 						className='hover:cursor-pointer'
-						onClick={() => signOut()}
+						onClick={() => {
+							signOut()
+							window.location.href = '/'
+						}}
 					>
 						Log out
 						<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
