@@ -8,19 +8,14 @@ export const createUser = async (data: any) => {
 
 export const createOrUpdateUser = async (data: any) => {
     try {
-        const existingUser = await _RETRIVE({ where: { phone: data.phone } });
+        const existingUser = await _RETRIVE({ where: { id: data.id } });
 
         if (existingUser) {
             // Update existing user
-            return await prismadb.user.update({
-                where: { email: data.phone },
-                data: data,
-            });
+            return await _PATCH({ where: { id: data.id }, data });
         } else {
             // Create new user
-            return await prismadb.user.create({
-                data: data,
-            });
+            return await _CREATE({ data });
         }
     } catch (error) {
         console.error("Error occurred while creating or updating user:", error);
@@ -62,6 +57,17 @@ const _GET = async ({ where, include }: { where: any; include?: any }) => {
     }
   };
 
+  const _PATCH = async ({ where, data }: { where: any; data: any }) => {
+    try {
+      return await prismadb.user.update({
+        where: where,
+        data: data
+      });
+    } catch (error) {
+      console.error('Error occurred while updating data:', error);
+      throw error; // Re-throw the error to propagate it up the call stack
+    }
+  }
 
   const _RETRIVE = async ({ where, include }: { where: any; include?: any }) => {
     try {
