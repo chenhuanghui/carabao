@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     const { user, isSignedIn, signOut } = useUser();
 
     return (
-        <header className="w-full flex justify-between items-center p-4 bg-black">
+        <header className="w-full flex justify-between items-center p-4 bg-green-800">
             <Link href="/" className='flex items-center space-x-2 justify-center'>
                 <Image
                     src="/assets/icons/carabao-logo.svg"

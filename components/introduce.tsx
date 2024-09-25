@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Section from './section';
 const Introduce: React.FC = () => {
 	return (
-		<Section className='bg-black text-white' >
+		<Section className='bg-green-800 text-white' >
 			<div className='flex flex-col lg:flex-row items-center justify-between gap-4'>
 				<div className="lg:w-1/2 mb-8 lg:mb-0">
 					<Image src="/carabao-can.png" alt="Business opportunity" width={400} height={400} className="rounded-xl" />

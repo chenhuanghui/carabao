@@ -3,8 +3,8 @@ import Image from "next/image"
 import Section from "./section"
 export default function Footer() {
     return (
-        <Section className="bg-black text-white">
-            <div className="w-full flex flex-row gap-4 items-center justify-start bg-transparent">
+        <Section className="bg-green-800 text-white py-10">
+            <div className="w-full flex flex-col md:flex-row gap-4 items-center justify-start bg-transparent">
                 <div className="flex flex-col gap-0 w-[300px] items-center">
                     <Image
                         src="/logo-white.png" alt="Image 1"
