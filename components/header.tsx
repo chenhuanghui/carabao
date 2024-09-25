@@ -6,13 +6,14 @@ import { auth, useUser } from '@cabin-id/nextjs';
 
 import UserNav from '@/components/user-nav';
 import AccessButton from '@/components/ui/access-button';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
     const { user, isSignedIn, signOut } = useUser();
 
-    return (    
+    return (
         <header className="w-full flex justify-between items-center p-4 bg-black">
-            <div className="flex items-center space-x-2 justify-center">
+            <Link href="/" className='flex items-center space-x-2 justify-center'>
                 <Image
                     src="/assets/icons/carabao-logo.svg"
                     alt="Carabao Logo"
@@ -20,7 +21,7 @@ const Header: React.FC = () => {
                     height={50}
                 />
                 <span className="text-xl font-bold text-white font-phudu hidden md:block">Carabao Việt Nam</span>
-            </div>
+            </Link>
             <div className="flex items-center space-x-4">
                 {/* <span>English</span>
                 <span>U</span> */}
@@ -39,13 +40,13 @@ const Header: React.FC = () => {
                         className='ml-2'
                     />
                 </Button> */}
-                {user && isSignedIn 
-                ? (
-                    <UserNav />
-                )
-                : (
-                    <AccessButton />
-                )}
+                {user && isSignedIn
+                    ? (
+                        <UserNav />
+                    )
+                    : (
+                        <AccessButton />
+                    )}
             </div>
         </header>
     );
