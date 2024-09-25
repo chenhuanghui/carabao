@@ -6,6 +6,7 @@ import HowToJoin from "@/components/how-to-join"
 import Introduce from "@/components/introduce"
 import FAQ from "@/components/faq"
 import Footer from "@/components/footer"
+import PullRing from "@/components/pull-ring"
 import { SocialPostModal } from "@/components/modal/social-post-modal"
 
 export const HomeClient = () => {
@@ -13,6 +14,7 @@ export const HomeClient = () => {
 
     return (
         <div className="home-client-wrapper">
+            <PullRing />
             <Hero onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
             <HowToJoin onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
             <Introduce/>
