@@ -2,6 +2,7 @@
 import { auth, useUser } from '@cabin-id/nextjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 // import { CreateOrUpdateUser, getUserById } from '@/lib/actions/user.actions';
 
@@ -60,9 +61,12 @@ export default function UserNav() {
 		return (
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button variant="ghost" className="relative h-8 w-8 rounded-full">
+					<Button variant="ghost" className="relative h-8 w-8 rounded-full bg-green-500 hover:bg-green-600 p-4">
 						<Avatar className="h-8 w-8">
-							<AvatarImage src={userImage ?? ''} alt={user?.firstName ?? ''} />
+							{userImage 
+							? (<AvatarImage src={userImage ?? ''} alt={user?.firstName ?? ''} />)
+							: <Image src="/assets/icons/carabao-logo.svg" alt="Carabao Logo" width={50} height={50} />
+						}							
 							<AvatarFallback className='text-black'>
 								{getInitialName(user.firstName + ' ' + user.lastName)}
 							</AvatarFallback>
