@@ -11,22 +11,22 @@ const steps = [
     {
         title: "Bước 1. Bùng nổ sáng tạo cùng Carabao",
         description: "Tạo ngay một video hoặc hình ảnh độc đáo cùng Carabao để thể hiện cá tính của bạn!",
-        image: "/assets/steps/1.svg"
+        image: "/assets/steps/b1.png"
     },
     {
         title: "Bước 2. Chia sẻ để lan tỏa niềm vui",
         description: "Đăng tải lên TikTok hoặc Facebook cá nhân và đừng quên thêm hashtag #CarabaoVietNam #DiThaiLanKhongKho để có cơ hội trúng thưởng.",
-        image: "/assets/steps/2.svg"
+        image: "/assets/steps/b2.png"
     },
     {
         title: "Bước 3. Đăng ký để không bỏ lỡ cơ hội",
         description: "Nhanh tay tạo tài khoản trên carabao.vn để bước gần hơn đến giải thưởng cực chất!",
-        image: "/assets/steps/3.svg"
+        image: "/assets/steps/b3.png"
     },
     {
         title: "Bước 4. Gửi bài dự thi và chờ đợi may mắn",
         description: "Dán link bài đăng của bạn vào bộ sưu tập trên carabao.vn và chờ đón tin vui! Tham gia càng nhiều, nội dung càng chất, thì xác suất trúng thưởng của bạn sẽ càng cao!",
-        image: "/assets/steps/4.svg"
+        image: "/assets/steps/b1.png"
     }
 ]
 
@@ -76,15 +76,16 @@ export default function HowToJoin({ onOpenSocialPostModal, className }: HowToJoi
                     </div>
                 </div>
                 <div className="flex flex-col items-center justify-center bg-[#e0f290] p-6 rounded-lg">
-                    <div className="relative h-[300px] w-full flex justify-center">
+                    <div className="relative h-[300px] w-full flex items-center justify-center">
                         {steps.map((step, index) => (
-                            <div className="absolute top-0 left-0 w-11/12 rounded-xl flex justify-center" key={index}>
+                            <div className="absolute inset-0 flex items-center justify-center" key={index}>
                                 <Image
                                     src={step.image}
                                     alt="Business opportunity"
-                                    width={600}
-                                    height={600}
+                                    width={700}
+                                    height={700}
                                     className={`transition-opacity duration-300 ${hoveredItem === index ? 'opacity-100' : 'opacity-0'}`}
+                                    objectFit="contain"
                                 />
                             </div>
                         ))}

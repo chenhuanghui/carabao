@@ -44,9 +44,12 @@ const ProfileTab: React.FC = () => {
     return (
         <Card className="w-full max-w-2xl mx-auto">
             <CardHeader>
-                <CardTitle className="flex items-center">
-                    <UserCog className="mr-2" size={24} />
-                    Edit Profile
+                <CardTitle className="flex flex-col gap-1 items-start ">
+                    <div className="flex items-center gap-1 text-xl md:text-2xl font-phudu">
+                        <UserCog className="mr-2" size={24} />
+                        Thông tin cá nhân
+                    </div>
+                    <span className="text-xs md:text-sm font-normal font-pathwayExtreme">Cập nhật thông tin cá nhân</span>
                 </CardTitle>
             </CardHeader>
             <CardContent>
