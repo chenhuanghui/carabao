@@ -60,7 +60,16 @@ export const updateUser = async ({
     where: any, 
     data: any
 }) => {
-    return await _PATCH({ where: where, data: data });
+    return await _PATCH({ 
+        where: where, 
+        data: {
+            name: data.name,
+            email: data.email,
+            bio: data.bio,
+            phone: data.phone,
+            avatar: data.avatar,
+        }
+    });
 };
 
 const _CREATE = async ({ data }: { data: any }) => {

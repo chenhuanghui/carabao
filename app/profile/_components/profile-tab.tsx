@@ -12,13 +12,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { updateUser } from "@/actions/user.action";
 
 const formSchema = z.object({
     id: z.string(),
-    fullName: z.string().min(1, "Full name is required"),
+    name: z.string().min(1, "Full name is required"),
     email: z.string().email("Invalid email address").optional().or(z.literal('')),
     bio: z.string().optional(),
-    phoneNumber: z.string().optional(),
+    phone: z.string().optional(),
     avatar: z.string().url("Invalid avatar URL").nullable(),
 });
 
@@ -30,10 +31,10 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             id: '',
-            fullName: '',
+            name: '',
             email: '',
             bio: '',
-            phoneNumber: '',
+            phone: '',
             avatar: null,
         }
     });
@@ -43,10 +44,10 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
             const user = data;
             form.reset({
                 id: user.id || '',
-                fullName: user.name || '',
+                name: user.name || '',
                 email: user.email || '',
                 bio: user.bio || '',
-                phoneNumber: user.phone || '',
+                phone: user.phone || '',
                 avatar: user.avatar || null,
             });
             setAvatarPreview(user.avatar || null);
@@ -61,9 +62,16 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
         }
     };
 
-    const onSubmit = (data: z.infer<typeof formSchema>) => {
-        console.log('Form submitted:', data);
-        // Handle form submission...
+    const onSubmit = async (formData: z.infer<typeof formSchema>) => {
+        console.log('Form submitted:', formData);
+        const updateRes = await updateUser({
+            where: {
+                id: formData.id
+            },
+            data: formData
+        })
+
+        console.log('Update response:', updateRes);
     };
 
     return (
@@ -117,7 +125,7 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
                         />
                         <FormField
                             control={form.control}
-                            name="fullName"
+                            name="name"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Full Name</FormLabel>
@@ -141,7 +149,7 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
                         />
                         <FormField
                             control={form.control}
-                            name="phoneNumber"
+                            name="phone"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Phone Number</FormLabel>
