@@ -45,40 +45,40 @@ const _CREATE = async ({ data }: { data: any }) => {
 
 const _GET = async ({ where, include }: { where: any; include?: any }) => {
     try {
-      return await prismadb.user.findMany({
-        where: where,
-        ...(include && { include: include })
-      });
+        return await prismadb.user.findMany({
+            where: where,
+            ...(include && { include: include }),
+        });
     } catch (error) {
-      console.error('Error occurred while retrieving data:', error);
-      throw error; // Re-throw the error to propagate it up the call stack
+        console.error("Error occurred while retrieving data:", error);
+        throw error; // Re-throw the error to propagate it up the call stack
     } finally {
-      await prismadb.$disconnect();
+        await prismadb.$disconnect();
     }
-  };
+};
 
-  const _PATCH = async ({ where, data }: { where: any; data: any }) => {
+const _PATCH = async ({ where, data }: { where: any; data: any }) => {
     try {
-      return await prismadb.user.update({
-        where: where,
-        data: data
-      });
+        return await prismadb.user.update({
+            where: where,
+            data: data,
+        });
     } catch (error) {
-      console.error('Error occurred while updating data:', error);
-      throw error; // Re-throw the error to propagate it up the call stack
+        console.error("Error occurred while updating data:", error);
+        throw error; // Re-throw the error to propagate it up the call stack
     }
-  }
+};
 
-  const _RETRIVE = async ({ where, include }: { where: any; include?: any }) => {
+const _RETRIVE = async ({ where, include }: { where: any; include?: any }) => {
     try {
-      return await prismadb.user.findUnique({
-        where: where,
-        ...(include && { include: include })
-      });
+        return await prismadb.user.findFirst({
+            where: where,
+            ...(include && { include: include }),
+        });
     } catch (error) {
-      console.error('Error occurred while retrieving data:', error);
-      throw error; // Re-throw the error to propagate it up the call stack
+        console.error("Error occurred while retrieving data:", error);
+        throw error; // Re-throw the error to propagate it up the call stack
     } finally {
-      await prismadb.$disconnect();
+        await prismadb.$disconnect();
     }
-  };
+};
