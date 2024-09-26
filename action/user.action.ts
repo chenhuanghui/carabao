@@ -15,7 +15,12 @@ export const createOrUpdateUser = async (data: any) => {
             return await _PATCH({ where: { id: data.id }, data });
         } else {
             // Create new user
-            return await _CREATE({ data });
+            return await _CREATE({ 
+                data : {
+                    id: data.id,
+                    ...data
+                }
+             });
         }
     } catch (error) {
         console.error("Error occurred while creating or updating user:", error);
