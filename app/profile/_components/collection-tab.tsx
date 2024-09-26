@@ -211,21 +211,23 @@ const CollectionTab: React.FC<{ data: any }> = (data) => {
                                             </>
                                         ) : (
                                             <>
-                                                <div className="flex items-center space-x-2 flex-grow mb-2 md:mb-0">
-                                                    <Link size={14} />
-                                                    <a href={collection.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline truncate text-sm">
-                                                        {truncateUrl(collection.url)}
-                                                    </a>
+                                                <div className="flex items-center space-x-2 flex-grow mb-2 md:mb-0 justify-between">
+                                                    <div className="flex items-center gap-1 w-full">
+                                                        <Link size={14} />
+                                                        <a href={collection.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 w-full hover:underline truncate text-sm">
+                                                            {truncateUrl(collection.url)}
+                                                        </a>
+                                                    </div>
                                                     {getPlatformIcon(collection.platform)}
                                                 </div>
-                                                <div className="flex space-x-2">
+                                                {/* <div className="flex space-x-2">
                                                     <Button onClick={() => handleEditCollection(collection.id, collection.url)} variant="outline" className="text-sm">
                                                         <Pencil size={14} />
                                                     </Button>
                                                     <Button onClick={() => handleDeleteCollection(collection.id)} variant="outline" className="text-red-500 text-sm">
                                                         <Trash2 size={14} />
                                                     </Button>
-                                                </div>
+                                                </div> */}
                                             </>
                                         )}
                                     </li>
