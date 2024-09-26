@@ -1,44 +1,30 @@
 "use client"
 
 import * as z from "zod";
-import { useState, FormEvent, ChangeEvent, useEffect } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { UserCog, Upload, Phone } from 'lucide-react';
-import { auth, useUser } from '@cabin-id/nextjs';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { retriveUser } from "@/server/actions/user.action";
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 
 const formSchema = z.object({
     id: z.string(),
     fullName: z.string().min(1, "Full name is required"),
-    email: z.string().email("Invalid email address"),
+    email: z.string().email("Invalid email address").optional().or(z.literal('')),
     bio: z.string().optional(),
     phoneNumber: z.string().optional(),
     avatar: z.string().url("Invalid avatar URL").nullable(),
 });
 
 const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
-    const { user, isSignedIn, signOut } = useUser();
-    const [formData, setFormData] = useState({
-        id: '',
-        fullName: '',
-        email: '',
-        bio: '',
-        phoneNumber: '',
-    });
     const [avatar, setAvatar] = useState<File | null>(null);
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -65,15 +51,7 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
             });
             setAvatarPreview(user.avatar || null);
         }
-    }, [data]);
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
+    }, [data, form]);
 
     const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -83,9 +61,9 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
         }
     };
 
-    const onSubmit = (data:any) => {
-        // Here you would typically send the form data to your backend
-        console.log('Form submitted:', { ...formData, avatar });
+    const onSubmit = (data: z.infer<typeof formSchema>) => {
+        console.log('Form submitted:', data);
+        // Handle form submission...
     };
 
     return (

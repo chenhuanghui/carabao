@@ -1,4 +1,4 @@
-"use server "
+"use server"
 
 import prismadb from "@/lib/prismadb";
 import {currentUser} from "@cabin-id/nextjs"

@@ -1,4 +1,4 @@
-import { getCurrentUser, retriveUser } from "@/server/actions/user.action";
+import { getCurrentUser, retriveUser } from "@/actions/user.action";
 import ProfileClient from "./_components/profile-client";
 
 const ProfilePage: React.FC = async () => {
