@@ -9,16 +9,11 @@ export const createUser = async (data: any) => {
 export const createOrUpdateUser = async (data: any) => {
     try {
         console.log("createOrUpdateUser", data);
-        
+
         const existingUser = await _RETRIVE({ where: { id: data.id } });
         if (existingUser) {
             // Update existing user
-            return await _PATCH({ 
-                where: { id: data.id }, 
-                data : {
-                    ...data
-                }
-            });
+            return existingUser;
         } else {
             // Create new user
             return await _CREATE({ 
