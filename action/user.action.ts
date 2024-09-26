@@ -12,7 +12,12 @@ export const createOrUpdateUser = async (data: any) => {
 
         if (existingUser) {
             // Update existing user
-            return await _PATCH({ where: { id: data.id }, data });
+            return await _PATCH({ 
+                where: { id: data.id }, 
+                data : {
+                    ...data
+                }
+            });
         } else {
             // Create new user
             return await _CREATE({ 
