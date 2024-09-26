@@ -29,7 +29,14 @@ const PullRing: React.FC<PullRingProps> = ({ }: PullRingProps) => {
                     </Button>
                 </div>
                 <div className="lg:w-1/2 flex flex-col lg:flex-row items-center lg:items-start space-y-4 lg:space-y-0 lg:space-x-4 justify-self-center">
-                    <Image src="/assets/kv.png" alt="Image 1" width={500} height={396} className="rounded-lg" />
+                    <Image 
+                        src="/assets/kv.png" 
+                        alt="Image 1" 
+                        width={1920} 
+                        height={1080} 
+                        className="rounded-lg w-full h-auto object-cover max-w-full" 
+                        priority
+                    />
                 </div>
             </div>
         </Section>
