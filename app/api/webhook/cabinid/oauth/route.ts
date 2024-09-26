@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createOrUpdateUser } from "@/action/user.action";
+import { createOrUpdateUser } from "@/actions/user.action";
 
 export async function POST(req: NextRequest) {
     const data = await req.json();

@@ -1,16 +1,36 @@
 "use client"
 
-import { useState, FormEvent, ChangeEvent } from "react";
+import * as z from "zod";
+import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import { UserCog, Upload, Phone } from 'lucide-react';
+import { auth, useUser } from '@cabin-id/nextjs';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { retriveUser } from "@/server/actions/user.action";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
-const ProfileTab: React.FC = () => {
+
+const formSchema = z.object({
+    id: z.string(),
+    fullName: z.string().min(1, "Full name is required"),
+    email: z.string().email("Invalid email address"),
+    bio: z.string().optional(),
+    phoneNumber: z.string().optional(),
+    avatar: z.string().url("Invalid avatar URL").nullable(),
+});
+
+const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
+    const { user, isSignedIn, signOut } = useUser();
     const [formData, setFormData] = useState({
+        id: '',
         fullName: '',
         email: '',
         bio: '',
@@ -18,6 +38,34 @@ const ProfileTab: React.FC = () => {
     });
     const [avatar, setAvatar] = useState<File | null>(null);
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            id: '',
+            fullName: '',
+            email: '',
+            bio: '',
+            phoneNumber: '',
+            avatar: null,
+        }
+    });
+
+    useEffect(() => {
+        if (data) {
+            const user = data;
+            form.reset({
+                id: user.id || '',
+                fullName: user.name || '',
+                email: user.email || '',
+                bio: user.bio || '',
+                phoneNumber: user.phone || '',
+                avatar: user.avatar || null,
+            });
+            setAvatarPreview(user.avatar || null);
+        }
+    }, [data]);
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -35,8 +83,7 @@ const ProfileTab: React.FC = () => {
         }
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const onSubmit = (data:any) => {
         // Here you would typically send the form data to your backend
         console.log('Form submitted:', { ...formData, avatar });
     };
@@ -53,79 +100,99 @@ const ProfileTab: React.FC = () => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="space-y-2">
-                        <Label htmlFor="avatar">Avatar</Label>
-                        <div className="flex items-center space-x-4">
-                            <Avatar className="w-20 h-20">
-                                {avatarPreview ? (
-                                    <AvatarImage src={avatarPreview} alt="Avatar preview" />
-                                ) : (
-                                    <AvatarFallback>CN</AvatarFallback>
-                                )}
-                            </Avatar>
-                            <Button variant="outline" className="cursor-pointer" asChild>
-                                <label>
-                                    <Upload className="mr-2" size={18} />
-                                    Upload Image
-                                    <Input
-                                        type="file"
-                                        id="avatar"
-                                        accept="image/*"
-                                        onChange={handleAvatarChange}
-                                        className="hidden"
-                                    />
-                                </label>
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="fullName">Full Name</Label>
-                        <Input
-                            type="text"
-                            id="fullName"
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                        <FormField
+                            control={form.control}
+                            name="avatar"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Avatar</FormLabel>
+                                    <FormControl>
+                                        <div className="flex items-center space-x-4">
+                                            <Avatar className="w-20 h-20">
+                                                {avatarPreview ? (
+                                                    <AvatarImage src={avatarPreview} alt="Avatar preview" />
+                                                ) : (
+                                                    <AvatarFallback>CN</AvatarFallback>
+                                                )}
+                                            </Avatar>
+                                            <Button variant="outline" className="cursor-pointer" asChild>
+                                                <label>
+                                                    <Upload className="mr-2" size={18} />
+                                                    Upload Image
+                                                    <Input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        onChange={(e) => {
+                                                            field.onChange(e.target.files?.[0]);
+                                                            handleAvatarChange(e);
+                                                        }}
+                                                        className="hidden"
+                                                    />
+                                                </label>
+                                            </Button>
+                                        </div>
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
                             name="fullName"
-                            value={formData.fullName}
-                            onChange={handleInputChange}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Full Name</FormLabel>
+                                    <FormControl>
+                                        <Input {...field} />
+                                    </FormControl>
+                                </FormItem>
+                            )}
                         />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                            type="email"
-                            id="email"
+                        <FormField
+                            control={form.control}
                             name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input {...field} type="email" />
+                                    </FormControl>
+                                </FormItem>
+                            )}
                         />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="phoneNumber">Phone Number</Label>
-                        <div className="flex items-center">
-                            <Phone className="mr-2" size={18} />
-                            <Input
-                                type="tel"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                value={formData.phoneNumber}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="bio">Bio</Label>
-                        <Textarea
-                            id="bio"
+                        <FormField
+                            control={form.control}
+                            name="phoneNumber"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Phone Number</FormLabel>
+                                    <FormControl>
+                                        <div className="flex items-center">
+                                            <Phone className="mr-2" size={18} />
+                                            <Input {...field} type="tel" />
+                                        </div>
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
                             name="bio"
-                            value={formData.bio}
-                            onChange={handleInputChange}
-                            rows={4}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Bio</FormLabel>
+                                    <FormControl>
+                                        <Textarea {...field} rows={4} />
+                                    </FormControl>
+                                </FormItem>
+                            )}
                         />
-                    </div>
-                    <Button type="submit" className="w-full">
-                        Update Profile
-                    </Button>
-                </form>
+                        <Button type="submit" className="w-full">
+                            Update Profile
+                        </Button>
+                    </form>
+                </Form>
             </CardContent>
         </Card>
     )

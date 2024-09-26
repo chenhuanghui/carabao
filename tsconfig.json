@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "esnext",
-        "module": "commonjs",
+        "module": "esnext",
         "jsx": "preserve",
         "strict": true,
         "esModuleInterop": true,
@@ -21,10 +21,10 @@
         ],
         "paths": {
             "@/*": ["./*"],
-            // "@public/*": ["public/*"]
+            "@/server/*": ["./server/*"]
         },
         "baseUrl": "."
     },
     "exclude": ["node_modules"],
-    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "app/layout.js", "components/media-player.jsx", "utils/facebookSDK.js", "constant.js"]
+    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
 }

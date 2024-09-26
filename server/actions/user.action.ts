@@ -1,6 +1,23 @@
-"use server ";
+"use server "
 
 import prismadb from "@/lib/prismadb";
+import {currentUser} from "@cabin-id/nextjs"
+
+export const getCurrentUser = async () => {
+    console.log("GetCurrentUser >>>")
+    const user = await currentUser()
+    
+    console.log("user: ", user)
+    if (!user) return null;
+
+    const userRes = await _RETRIVE({
+        where: {
+            id: user?.id
+        }
+    })
+
+    return userRes;
+}
 
 export const createUser = async (data: any) => {
     return await _CREATE({ data });
@@ -29,6 +46,21 @@ export const createOrUpdateUser = async (data: any) => {
     } finally {
         await prismadb.$disconnect();
     }
+};
+
+export const retriveUser = async ({ where }: { where: any }) => {
+    console.log("retriveUser: ", where);
+    return await _RETRIVE({ where: where });
+};
+
+export const updateUser = async ({
+    where, 
+    data
+}: {
+    where: any, 
+    data: any
+}) => {
+    return await _PATCH({ where: where, data: data });
 };
 
 const _CREATE = async ({ data }: { data: any }) => {

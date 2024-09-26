@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import LocalFont from "next/font/local";
 import { CabinIDProvider } from '@cabin-id/nextjs';
 
+import UseQueryProviders from "@/providers/use-query-provider";
+
 import "./globals.css";
 
 import {
@@ -87,24 +89,13 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<CabinIDProvider>
-				<body
-					className={`${pathwayExtreme.variable} ${bungee.variable} ${bungeeShade.variable} ${interFont.variable} ${bungeeInline.variable} ${phudu.variable} ${leagueGothic.variable} ${calSans.variable} ${fasterOne.variable}`}
-				>
-					{/* <div
-					className="pt-10 p-5 md:p-0 md:pt-5 "
-					style={{
-						backgroundImage: "url('/game-background.jpg')",
-						backgroundRepeat: "no-repeat",
-						backgroundSize: "auto 100%",
-						backgroundPosition: "top",
-						objectFit: "cover",
-						minHeight: "100svh",
-						maxHeight: "100svh",
-					}}>
-				</div> */}
-
-					{children}
-				</body>
+				<UseQueryProviders>
+					<body
+						className={`${pathwayExtreme.variable} ${bungee.variable} ${bungeeShade.variable} ${interFont.variable} ${bungeeInline.variable} ${phudu.variable} ${leagueGothic.variable} ${calSans.variable} ${fasterOne.variable}`}
+					>
+						{children}
+					</body>
+				</UseQueryProviders>
 			</CabinIDProvider>
 		</html>
 	);
