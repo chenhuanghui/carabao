@@ -31,9 +31,9 @@ const Hero: React.FC<HeroProps> = ({ onOpenSocialPostModal }: HeroProps) => {
                     {/* <Image src="/image1.jpg" alt="Image 1" width={300} height={200} className="rounded-lg" />
           <Image src="/image2.jpg" alt="Image 2" width={300} height={200} className="rounded-lg" />
           <Image src="/image3.jpg" alt="Image 3" width={300} height={200} className="rounded-lg" /> */}
-                    <video controls className="w-full rounded-2xl shadow-lg border-2 border-green-500">
+                    <video controls className="w-full rounded-2xl shadow-lg border-2 border-green-500" preload="metadata">
                         <source 
-                            src="https://hcm03.vstorage.vngcloud.vn/v1/AUTH_003ad868e39941579ae6ca95335a7486/reelflow/444956bf-c4d8-49f2-b370-d19b5f0d2bfe.mp4" 
+                            src="https://hcm03.vstorage.vngcloud.vn/v1/AUTH_003ad868e39941579ae6ca95335a7486/reelflow/444956bf-c4d8-49f2-b370-d19b5f0d2bfe.mp4#t=0.001" 
                             type="video/mp4" 
                         />
                         Your browser does not support the video tag.
