@@ -10,7 +10,7 @@ import Section from "./section"
 const steps = [
     {
         title: "Bước 1. Bùng nổ sáng tạo cùng Carabao",
-        description: "Tạo ngay một video hoặc hình ảnh độc đáo cùng Carabao để thể hiện cá tính của bạn!",
+        description: "Tạo ngay một video hoặc hình ảnh độc đáo cùng khoen lon Carabao miễn phí để thể hiện cá tính của bạn!",
         image: "/assets/steps/b1.png"
     },
     {
