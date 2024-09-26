@@ -22,7 +22,7 @@ const PullRing: React.FC<PullRingProps> = ({ }: PullRingProps) => {
                     </p> */}
                     <Button
                         className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-phudu animate-bounce"
-                    // onClick={onOpenSocialPostModal}
+                        onClick={() => window.location.href = '/exchange'}
                     >
                         Xem điểm đổi lon
                         <span className="ml-1"> 🔥 </span>
