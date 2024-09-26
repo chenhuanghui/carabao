@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect } from "react";
+import Header from "@/components/header";
+import Section from "@/components/section";
 
 export default function ExchangeClient() {
     useEffect(() => {
@@ -8,8 +10,11 @@ export default function ExchangeClient() {
     }, []);
 
     return (
-        <div>
-            <h1>Exchange Client</h1>
+        <div className="profile-wrapper">
+            <Header />
+            <Section className="bg-[#eee] min-h-screen font-pathwayExtreme">
+                Exhange page
+            </Section>
         </div>
     )
 }
