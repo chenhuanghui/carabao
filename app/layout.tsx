@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LocalFont from "next/font/local";
 import { CabinIDProvider } from '@cabin-id/nextjs';
-
+import { ToasterProvider } from "@/providers/toast-provider";
 import UseQueryProviders from "@/providers/use-query-provider";
 
 import "./globals.css";
@@ -94,6 +94,7 @@ export default function RootLayout({
 						className={`${pathwayExtreme.variable} ${bungee.variable} ${bungeeShade.variable} ${interFont.variable} ${bungeeInline.variable} ${phudu.variable} ${leagueGothic.variable} ${calSans.variable} ${fasterOne.variable}`}
 					>
 						{children}
+						<ToasterProvider />
 					</body>
 				</UseQueryProviders>
 			</CabinIDProvider>

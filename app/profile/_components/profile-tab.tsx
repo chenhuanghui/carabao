@@ -5,6 +5,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { UserCog, Upload, Phone } from 'lucide-react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast"
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -70,6 +71,12 @@ const ProfileTab: React.FC<{ data: any }> = ({ data }) => {
             },
             data: formData
         })
+
+        if (updateRes.error) {
+            toast.error(updateRes.error);
+        } else {
+            toast.success("Cập nhật thông tin thành công");
+        }
 
         console.log('Update response:', updateRes);
     };

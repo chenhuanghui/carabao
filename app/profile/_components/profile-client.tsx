@@ -53,7 +53,7 @@ export default function ProfileClient({
                     <div className="profile-content w-full md:w-3/4 md:pl-4 mt-4 md:mt-0">
                         {activeTab !== 'profile' ? (
                             <div className="creative-collection">
-                                <CollectionTab />
+                                <CollectionTab data={user}/>
                                 {/* Add your list of social links here */}
                             </div>
 
