@@ -3,8 +3,44 @@
 import prismadb from "@/lib/prismadb";
 import { getCurrentUser } from "./user.action";
 import { Collection } from "@prisma/client";
-export const createCollection = async (data: any) => {
-    return await _CREATE({ data });
+
+export const createCollectionForCurrentUser = async (data: any) => {
+    try {
+        const currentUser = await getCurrentUser();
+        const url = new URL(data.url);
+        const pathParts = url.pathname.split('/');
+        let socialPostId = '';
+
+        if (url.hostname.includes('tiktok.com') && pathParts[2] === 'video') {
+            socialPostId = pathParts[3];
+        } else if (url.hostname.includes('facebook.com') && pathParts[2] === 'posts') {
+            socialPostId = pathParts[3];
+        }
+
+        // Check if the collection already exists
+        const existingCollection = await prismadb.collection.findFirst({
+            where: {
+                socialPostId: socialPostId,
+                platform: data.platform,
+            }
+        });
+
+        if (existingCollection) {
+            throw new Error("Bài đăng của bạn đã tồn tại");
+        }
+
+        const collection = await prismadb.collection.create({
+            data: { 
+                ...data, 
+                userId: currentUser?.id,
+                socialPostId: socialPostId
+            },
+        });
+        return collection;
+    } catch (error) {
+        console.error("Error creating collection for current user:", error);
+        throw error;
+    }
 };
 
 export const getCurrentUserCollections = async (): Promise<Collection[]> => {
@@ -21,6 +57,7 @@ export const getCurrentUserCollections = async (): Promise<Collection[]> => {
             id: collection.id,
             url: collection.url,
             platform: collection.platform,
+            socialPostId: collection.socialPostId,
             // Include other fields as needed
         }));
     } catch (error) {

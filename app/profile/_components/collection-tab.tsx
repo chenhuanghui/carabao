@@ -1,5 +1,5 @@
 "use client"
-import { z } from "zod";
+import { any, z } from "zod";
 import { useState, useEffect } from "react";
 import { Plus, File, Pencil, Trash2, Save, X, Link, Facebook, Music } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast"
 
 import { getCurrentUserCollections } from "@/actions/collection.action";
-import { createCollection } from "@/actions/collection.action";
+import { createCollectionForCurrentUser } from "@/actions/collection.action";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ interface Collection {
     id: string;
     url: string;
     platform: string;
+    socialPostId?: string;
 }
 
 const urlSchema = z.string().url().refine(
@@ -50,7 +51,8 @@ const CollectionTab: React.FC<{ data: any }> = (data) => {
 
     useEffect(() => {
         if (fetchedCollections) {
-            setCollections(fetchedCollections);
+            console.log(fetchedCollections)
+            setCollections(fetchedCollections as Collection[]);
         } else {
             setCollections([]);
         }
@@ -64,10 +66,9 @@ const CollectionTab: React.FC<{ data: any }> = (data) => {
         try {
             const platform = getPlatform(values.url);
             // Call createCollection to create a new collection for the current user
-            const newCollection = await createCollection({
+            const newCollection = await createCollectionForCurrentUser({
                 url: values.url,
                 platform: platform,
-                userId: data.data.id // Assuming the user ID is passed in the data prop
             });
 
             if (newCollection) {
@@ -79,14 +80,14 @@ const CollectionTab: React.FC<{ data: any }> = (data) => {
                 // If creation failed, set an error
                 setError("Failed to create new collection");
             }
-            setCollections([...collections, { id: Date.now().toString(), url: values.url, platform }]);
             form.reset();
             setError(null);
-        } catch (err) {
+        } catch (err:any) {
             if (err instanceof z.ZodError) {
                 setError(err.errors[0].message);
                 toast.error(err.errors[0].message);
             } else {
+                toast.error(err?.message);
                 setError("An unexpected error occurred");
             }
         }
@@ -141,7 +142,7 @@ const CollectionTab: React.FC<{ data: any }> = (data) => {
         }
     };
 
-    const truncateUrl = (url: string, maxLength: number = 30) => {
+    const truncateUrl = (url: string, maxLength: number = 100) => {
         return url.length > maxLength ? url.substring(0, maxLength) + '...' : url;
     };
 
@@ -192,7 +193,7 @@ const CollectionTab: React.FC<{ data: any }> = (data) => {
                         )
                         : (
                             <ul className="space-y-2">
-                                {collections.map((collection) => (
+                                {collections.map((collection: Collection) => (
                                     <li key={collection.id} className="flex flex-col md:flex-row items-start md:items-center justify-between p-2 bg-gray-100 rounded text-sm">
                                         {editingId === collection.id ? (
                                             <>
@@ -212,13 +213,15 @@ const CollectionTab: React.FC<{ data: any }> = (data) => {
                                         ) : (
                                             <>
                                                 <div className="flex items-center space-x-2 flex-grow mb-2 md:mb-0 justify-between">
-                                                    <div className="flex items-center gap-1 w-full">
-                                                        <Link size={14} />
-                                                        <a href={collection.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 w-full hover:underline truncate text-sm">
-                                                            {truncateUrl(collection.url)}
+                                                    <div className="flex items-center gap-1 flex-grow min-w-0">
+                                                        <Link size={14} className="flex-shrink-0" />
+                                                        <a href={collection.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline truncate text-sm max-w-[500px] inline-block">
+                                                            {collection.socialPostId || collection.url}
                                                         </a>
                                                     </div>
-                                                    {getPlatformIcon(collection.platform)}
+                                                    <div className="flex-shrink-0">
+                                                        {getPlatformIcon(collection.platform)}
+                                                    </div>
                                                 </div>
                                                 {/* <div className="flex space-x-2">
                                                     <Button onClick={() => handleEditCollection(collection.id, collection.url)} variant="outline" className="text-sm">

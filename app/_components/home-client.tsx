@@ -23,7 +23,10 @@ export const HomeClient = () => {
             <SocialPostModal 
                 isOpen={isOpenSocialPostModal} 
                 onClose={() => setIsOpenSocialPostModal(false)} 
-                onSuccess={() => console.log("success")}
+                onSuccess={() => {
+                    console.log("success")
+                    setIsOpenSocialPostModal(false)
+                }}
             />
         </div>
     )

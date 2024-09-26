@@ -5,17 +5,23 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { SubmitHandler } from 'react-hook-form';
+import { useRouter } from "next/navigation"
+import toast from "react-hot-toast"
 
 import { Modal } from "@/components/ui/modal"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
-import { cn } from "@/lib/utils"
+import { createCollectionForCurrentUser } from "@/actions/collection.action"
+
 
 // Define the form schema
 const formSchema = z.object({
-    socialLink: z.string().url("Please enter a valid URL").min(1, "Social link is required"),
+    url: z.string().url("Please enter a valid URL").refine(
+        (url) => url.includes('facebook.com') || url.includes('tiktok.com'),
+        { message: "Only Facebook and TikTok URLs are allowed" }
+    ),
 })
 
 interface SocialPostModalProps {
@@ -24,29 +30,33 @@ interface SocialPostModalProps {
     onSuccess: () => void;
 }
 
-
 export const SocialPostModal = ({
     isOpen = false,
     onClose,
     onSuccess
 }: SocialPostModalProps) => {
+    const router = useRouter()
 
     // Initialize the form
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            socialLink: "",
+            url: "",
         },
     })
 
-    const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        // handle form data
-        console.log(data);
-    };
-
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value)
+    const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (values) => {
+        try {
+            const platform = values.url.includes('facebook.com') ? 'facebook' : 'tiktok'
+            await createCollectionForCurrentUser({ ...values, platform })
+            toast.success('Đã thêm vào Bộ sưu tập sáng tạo thành công')
+            form.reset()
+            onSuccess()
+            router.replace('/profile')
+        } catch (error) {
+            console.error('Error creating collection:', error)
+            toast.error('Failed to create collection')
+        }
     }
 
     return (
@@ -60,7 +70,7 @@ export const SocialPostModal = ({
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 py-0">
                     <FormField
                         control={form.control}
-                        name="socialLink"
+                        name="url"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel className="text-lg font-pathwayExtreme">TikTok URL / Facebook URL</FormLabel>
@@ -78,6 +88,6 @@ export const SocialPostModal = ({
                     <Button type="submit" className="font-phudu bg-green-500 hover:bg-green-600">Submit</Button>
                 </form>
             </Form>
-        </Modal >
+        </Modal>
     )
 }
