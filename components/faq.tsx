@@ -17,7 +17,7 @@ const FAQ: React.FC<FAQProps> = ({ onOpenSocialPostModal }: FAQProps) => {
     const faqs = [
         {
             question: "Làm sao để tham gia trò chơi trúng thưởng của Carabao?",
-            answer: "Rất đơn giản! Chỉ cần bạn sáng tạo nội dung vui nhộn, thú vị với nước tăng lực Carabao (hình ảnh hoặc video), đăng lên TikTok hay Facebook kèm hashtag #CarabaoVietNam và #DiThaiLanKhongKho. Sau đó, vào trang web carabao.vn, nhập đường link bài đăng của bạn. Vậy là xong!"
+            answer: "Rất đơn giản! Chỉ cần bạn sáng tạo nội dung vui nhộn, thú vị với nước khoen miễn phí nước tăng lực Carabao (hình ảnh hoặc video), đăng lên TikTok hay Facebook kèm hashtag #CarabaoVietNam và #DiThaiLanKhongKho. Sau đó, vào trang web carabao.vn, nhập đường link bài đăng của bạn. Vậy là xong!"
         },
         {
             question: "Mình có thể tăng cơ hội trúng giải không?",
