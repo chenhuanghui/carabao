@@ -76,7 +76,7 @@ export const SocialPostModal = ({
                                 <FormLabel className="text-lg font-pathwayExtreme">TikTok URL / Facebook URL</FormLabel>
                                 <FormControl>
                                     <Input
-                                        className=""
+                                        className="text-[16px]"
                                         placeholder="Nhập link của bạn ở đây"
                                         {...field}
                                     />

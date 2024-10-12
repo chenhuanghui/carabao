@@ -26,5 +26,5 @@
         "baseUrl": "."
     },
     "exclude": ["node_modules"],
-    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "../tiktoker.network/providers/upload-file-provider.tsx"]
 }
