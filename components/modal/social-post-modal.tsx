@@ -7,14 +7,15 @@ import * as z from "zod"
 import { SubmitHandler } from 'react-hook-form';
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
+import { auth, useUser } from '@cabin-id/nextjs';
 
+import AccessButton from '@/components/ui/access-button';
 import { Modal } from "@/components/ui/modal"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
 import { createCollectionForCurrentUser } from "@/actions/collection.action"
-
 
 // Define the form schema
 const formSchema = z.object({
@@ -36,7 +37,7 @@ export const SocialPostModal = ({
     onSuccess
 }: SocialPostModalProps) => {
     const router = useRouter()
-
+    const { user, isSignedIn, signOut } = useUser();
     // Initialize the form
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -66,28 +67,37 @@ export const SocialPostModal = ({
             description="Dán link bài đăng mạng xã hội vào đây để tham gia ngay cùng Carabao và tăng cơ hội nhận vé du lịch Thái Lan miễn phí. Đừng bỏ lỡ!"
             onClose={onClose}
         >
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 py-0">
-                    <FormField
-                        control={form.control}
-                        name="url"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-lg font-pathwayExtreme">TikTok URL / Facebook URL</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        className="text-[16px]"
-                                        placeholder="Nhập link của bạn ở đây"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <Button type="submit" className="font-phudu bg-green-500 hover:bg-green-600">Submit</Button>
-                </form>
-            </Form>
+
+            {user && isSignedIn
+                ? (
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 py-0">
+                            <FormField
+                                control={form.control}
+                                name="url"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="text-lg font-pathwayExtreme">TikTok URL / Facebook URL</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                className="text-[16px]"
+                                                placeholder="Nhập link của bạn ở đây"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit" className="font-phudu bg-green-500 hover:bg-green-600">Submit</Button>
+                        </form>
+                    </Form>
+                )
+                : (
+                    <AccessButton />
+                )}
+
+
         </Modal>
     )
 }
