@@ -49,14 +49,19 @@ export const SocialPostModal = ({
     const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (values) => {
         try {
             const platform = values.url.includes('facebook.com') ? 'facebook' : 'tiktok'
-            await createCollectionForCurrentUser({ ...values, platform })
-            toast.success('Đã thêm vào Bộ sưu tập sáng tạo thành công')
-            form.reset()
-            onSuccess()
-            router.replace('/profile')
-        } catch (error) {
+            const createRes = await createCollectionForCurrentUser({ ...values, platform })
+            if (createRes.error) {
+                throw new Error(createRes.error)
+            } else {
+                toast.success('Đã thêm vào Bộ sưu tập sáng tạo thành công')
+                form.reset()
+                onSuccess()
+                router.replace('/profile')
+            }
+
+        } catch (error: any) {
             console.error('Error creating collection:', error)
-            toast.error('Failed to create collection')
+            toast.error(`Failed to create collection: ${error?.message}`)
         }
     }
 

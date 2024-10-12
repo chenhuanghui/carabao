@@ -9,14 +9,25 @@ export const createCollectionForCurrentUser = async (data: any) => {
         const currentUser = await getCurrentUser();
         const url = new URL(data.url);
         const pathParts = url.pathname.split('/');
+        console.log("pathParts: ", pathParts)
         let socialPostId = '';
-
-        if (url.hostname.includes('tiktok.com') && pathParts[2] === 'video') {
+        
+        if (url.hostname.includes('vt.tiktok.com')) {
+            // https://vt.tiktok.com/ZS2TvpTJ3/
+            console.log("url.hostname.includes('vt.tiktok.com')")
+            socialPostId = pathParts[1]
+        } else if (url.hostname.includes('tiktok.com') && pathParts[2] === 'video') {
+            console.log("url.hostname.includes('tiktok.com') && pathParts[2] === 'video'")
             socialPostId = pathParts[3];
         } else if (url.hostname.includes('facebook.com') && pathParts[2] === 'posts') {
+            console.log("url.hostname.includes('facebook.com') && pathParts[2] === 'posts'")
             socialPostId = pathParts[3];
         }
+        console.log("socialPostId: ", socialPostId)
 
+        if(!socialPostId || socialPostId === '' || socialPostId === undefined || socialPostId.length === 0) return {
+            error: "Invalid URL"
+        }
         // Check if the collection already exists
         const existingCollection = await prismadb.collection.findFirst({
             where: {
