@@ -15,7 +15,7 @@ export const HomeClient = () => {
     return (
         <div className="home-client-wrapper w-full">
             <PullRing />
-            <Hero onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
+            {/* <Hero onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} /> */}
             {/* <HowToJoin onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} /> */}
             {/* <Introduce/> */}
             {/* <FAQ onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} /> */}
