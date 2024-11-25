@@ -13,12 +13,12 @@ export const HomeClient = () => {
     const [isOpenSocialPostModal, setIsOpenSocialPostModal] = useState(false)
 
     return (
-        <div className="home-client-wrapper">
+        <div className="home-client-wrapper w-full">
             <PullRing />
             <Hero onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
-            <HowToJoin onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
-            <Introduce/>
-            <FAQ onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} />
+            {/* <HowToJoin onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} /> */}
+            {/* <Introduce/> */}
+            {/* <FAQ onOpenSocialPostModal={() => setIsOpenSocialPostModal(true)} /> */}
             <Footer />
             <SocialPostModal 
                 isOpen={isOpenSocialPostModal} 
